@@ -1,0 +1,2082 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Tahoma, sans-serif;
+}
+
+#header {
+    text-align: center;
+    padding: 20px;
+}
+
+#game {
+    display: flex;
+    height: 80vh;
+}
+
+#player1,
+#player2 {
+    width: 20%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#board {
+    width: 60%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    /* صفحه شطرنجی ظریف */
+    background-image:
+        linear-gradient(
+            rgba(120, 140, 160, 0.12) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(120, 140, 160, 0.12) 1px,
+            transparent 1px
+        );
+
+    background-size: 25px 25px;
+}
+
+.panel{
+    flex:1;
+    border:2px solid #999;
+    border-radius:10px;
+    padding:10px;
+}
+
+.panel h3{
+    margin-top:0;
+    text-align:center;
+}
+#source-area,
+#target-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ================================= */
+/* برد مقایسه عملکرد */
+/* ================================= */
+
+/* ================================= */
+/* برد مقایسه عملکرد */
+/* ================================= */
+
+#score-board {
+    width: 100%;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+
+    padding: 12px 16px;
+
+    background: linear-gradient(
+        135deg,
+        #f8fbff,
+        #eef4ff
+    );
+
+    border: 1px solid #cbd5e1;
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 14px rgba(30, 64, 175, 0.10);
+}
+
+.score-board-title {
+    text-align: center;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    color: #1e3a8a;
+
+    margin: 0 0 10px 0;
+}
+
+.score-board-players {
+    display: flex;
+    flex-direction: row;
+
+    align-items: stretch;
+    justify-content: center;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+.score-player {
+    flex: 1;
+
+    box-sizing: border-box;
+
+    padding: 8px 12px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    border: 1px solid #dbe4f0;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.score-player:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.10);
+}
+
+.score-player-name {
+    font-family: Tahoma, sans-serif;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #334155;
+
+    margin-bottom: 6px;
+}
+#source-area img {
+    width: 150px;
+    height: 150px;
+}
+#target-area img {
+    width: 150px;
+    height: 150px;
+}
+#transformation-tools {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#transformation-tools button {
+    padding: 10px 20px;
+    font-family: Tahoma, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+#selected-transformations {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#transformation-code {
+    min-height: 35px;
+    border: 1px dashed #999;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.transform-item {
+    display: inline-block;
+    margin: 3px;
+    padding: 6px 10px;
+    background: #e8f1ff;
+    border-radius: 6px;
+}
+.player-code {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.player-code h4 {
+    margin: 8px 0;
+}
+
+.transformation-code {
+    min-height: 35px;
+    border: 1px dashed #999;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.transform-item {
+    display: inline-block;
+    margin: 3px;
+    padding: 6px 10px;
+    background: #e8f1ff;
+    border-radius: 6px;
+}
+#submit-code {
+    display: block;
+    margin: 15px auto 8px;
+    padding: 10px 25px;
+    font-family: Tahoma, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#turn-message {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.shapes-row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+}
+
+.shapes-row .panel {
+    flex: 1;
+    max-width: 450px;
+    min-height: 300px;
+}
+
+.shapes-row svg {
+    display: block;
+    margin: 0 auto;
+}
+.transform-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.delete-transform {
+    border: none;
+    background: transparent;
+    color: #d9534f;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 3px;
+    line-height: 1;
+}
+
+.delete-transform:hover {
+    color: #b52b27;
+}
+#video-challenge {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#video-challenge .video-box {
+    width: 65%;
+    max-width: 500px;
+    margin: -10px auto 0;
+}
+
+#video-challenge video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+/* =========================================
+   پنجره پایان بازی
+   ========================================= */
+
+/* =========================================
+   پنجره پایان بازی
+   ========================================= */
+
+.game-over-modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background:
+        rgba(15, 23, 42, 0.72);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 9999;
+}
+
+.game-over-box {
+    width: min(560px, 90vw);
+
+    padding: 36px 38px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7faff
+        );
+
+    border-radius: 24px;
+
+    border: 1px solid #dbe4f0;
+
+    box-shadow:
+        0 20px 60px
+        rgba(16, 22, 36, 0.25);
+
+ 
+
+.game-over-title {
+    font-family: Tahoma, sans-serif;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    margin: 0 0 14px 0;
+
+    color: #1e3a8a;
+}
+
+
+
+
+
+.game-over-message {
+    font-size: 20px;
+
+    margin-bottom: 25px;
+
+    color: #4a5568;
+}
+
+.game-over-result {
+    font-size: 24px;
+    font-weight: bold;
+
+    margin-bottom: 30px;
+
+    color: #d69e2e;
+}
+
+#restart-game {
+    padding: 13px 28px;
+
+    border: none;
+    border-radius: 12px;
+
+    font-family: Tahoma;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: #3182ce;
+    color: white;
+}
+
+#restart-game:hover {
+    transform: scale(1.04);
+}
+/* =========================================
+   کارت‌های بازیکنان در برد
+   ========================================= */
+
+.score-player {
+    position: relative;
+
+    min-height: 72px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 4px;
+}
+
+.score-player-name {
+    font-size: 17px;
+    font-weight: bold;
+
+    margin-bottom: 4px;
+}
+
+.score-player > div {
+    font-family: Tahoma, sans-serif;
+    font-size: 15px;
+
+    color: #475569;
+}
+
+.score-player > div span {
+    font-weight: bold;
+    font-size: 17px;
+    color: #1e293b;
+}
+
+/* =========================================
+   ظاهر بهتر زمان
+   ========================================= */
+
+#player1-total-time,
+#player2-total-time {
+    font-family: "Courier New", monospace;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #2563eb;
+}
+
+/* =========================================
+   نمایش امتیاز نهایی
+   ========================================= */
+
+#final-player1-score,
+#final-player2-score {
+    font-family: Tahoma, sans-serif;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    color: #d69e2e;
+}
+/* =========================================
+   رنگ‌بندی وضعیت پاسخ و زمان
+   ========================================= */
+
+/* =========================================
+   رنگ‌بندی آموزشی برد امتیازات
+   ========================================= */
+
+/* پاسخ صحیح — سبز تأییدی */
+.score-player > div:first-of-type {
+    color: #2E7D5B;
+}
+
+.score-player > div:first-of-type span {
+    color: #246B4D;
+}
+
+/* پاسخ غلط — قرمز مرجانیِ ملایم */
+.score-player > div:nth-of-type(2) {
+    color: #C85C5C;
+}
+
+.score-player > div:nth-of-type(2) span {
+    color: #A94444;
+}
+
+/* زمان — آبی/فیروزه‌ای اطلاعاتی */
+.score-player > div:nth-of-type(3) {
+    color: #287A9E;
+}
+
+#player1-total-time,
+#player2-total-time {
+    color: #236B8E;
+
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+/* =========================================
+   انیمیشن ورود پنجره پایان بازی
+   ========================================= */
+
+
+}
+/* =========================================
+   رنگ‌بندی پنجره پایان بازی
+   ========================================= */
+
+.final-player > div {
+    margin: 6px 0;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 16px;
+
+    color: #475569;
+}
+
+/* پاسخ صحیح */
+.final-player > div:nth-of-type(1) {
+    color: #2E7D5B;
+}
+
+.final-player > div:nth-of-type(1) span {
+    color: #246B4D;
+    font-weight: bold;
+}
+
+/* پاسخ غلط */
+.final-player > div:nth-of-type(2) {
+    color: #C85C5C;
+}
+
+.final-player > div:nth-of-type(2) span {
+    color: #A94444;
+    font-weight: bold;
+}
+
+/* زمان */
+.final-player > div:nth-of-type(3) {
+    color: #287A9E;
+}
+
+#final-player1-time,
+#final-player2-time {
+    color: #236B8E;
+
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+
+/* امتیاز نهایی */
+.final-player > div:nth-of-type(4) {
+    color: #A67C1A;
+}
+
+#final-player1-score,
+#final-player2-score {
+    color: #A67C1A;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+/* =========================================
+   رنگ‌بندی دقیق برد عملکرد
+   ========================================= */
+
+/* ✓ پاسخ صحیح */
+#player1-correct-count,
+#player2-correct-count {
+    color: #246B4D;
+    font-weight: bold;
+}
+
+/* خود علامت ✓ */
+.score-player > div:nth-of-type(2) {
+    color: #2E7D5B;
+}
+
+/* ✗ پاسخ غلط */
+#player1-wrong-count,
+#player2-wrong-count {
+    color: #A94444;
+    font-weight: bold;
+}
+
+/* خود علامت ✗ */
+.score-player > div:nth-of-type(3) {
+    color: #C85C5C;
+}
+
+/* ⏱ زمان */
+#player1-total-time,
+#player2-total-time {
+    color: #236B8E !important;
+
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+}
+
+/* خود علامت ساعت */
+.score-player > div:nth-of-type(4) {
+    color: #287A9E;
+}
+/* =========================================
+   پنل‌های شکل اصلی و شکل تبدیل‌یافته
+   ========================================= */
+
+.shapes-row .panel {
+    position: relative;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe4f0;
+    border-radius: 16px;
+
+    padding: 14px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 4px 14px rgba(15, 23, 42, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.shapes-row .panel:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.12);
+}
+
+/* عنوان پنل‌ها */
+
+.shapes-row .panel h3 {
+    margin: 0 0 10px 0;
+
+    text-align: center;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #334155;
+}
+
+/* شکل اصلی */
+
+#original-area {
+    border-top: 4px solid #287A9E;
+}
+
+#original-area h3 {
+    color: #236B8E;
+}
+
+/* شکل هدف */
+
+#target-area {
+    border-top: 4px solid #2E7D5B;
+}
+
+#target-area h3 {
+    color: #246B4D;
+}
+
+/* فضای SVG */
+
+.shapes-row .panel svg {
+    display: block;
+
+    width: 100%;
+    max-width: 300px;
+
+    height: 250px;
+
+    margin: 0 auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbfdff,
+            #f7faff
+        );
+
+    border-radius: 10px;
+}
+/* =========================================
+   ابزارهای تبدیل بازیکن
+   ========================================= */
+
+.player-tools {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-top: 14px;
+    padding: 10px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+/* دکمه‌های ابزار */
+
+.player-tools button {
+    min-width: 105px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 5px rgba(15, 23, 42, 0.07);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.player-tools button:hover {
+    transform: translateY(-2px);
+
+    background: #eef6ff;
+
+    box-shadow:
+        0 5px 10px rgba(15, 23, 42, 0.12);
+}
+
+.player-tools button:active {
+    transform: translateY(0) scale(0.97);
+
+    box-shadow:
+        0 2px 4px rgba(15, 23, 42, 0.08);
+}
+/* =========================================
+   رنگ‌بندی عملیات هندسی
+   ========================================= */
+
+/* =========================================
+   رنگ‌بندی عملیات هندسی — هر دو بازیکن
+   ========================================= */
+
+/* انتقال */
+#player1-translate,
+#player2-translate {
+    border-color: #7AA7D9;
+    background: #F1F6FC;
+    color: #24527A;
+}
+
+#player1-translate:hover,
+#player2-translate:hover {
+    background: #E4EFFA;
+}
+
+/* دوران ساعتگرد */
+#player1-rotate-cw,
+#player2-rotate-cw {
+    border-color: #A58AC4;
+    background: #F5F0F9;
+    color: #5D3F78;
+}
+
+#player1-rotate-cw:hover,
+#player2-rotate-cw:hover {
+    background: #ECE3F3;
+}
+
+/* دوران پادساعتگرد */
+#player1-rotate-ccw,
+#player2-rotate-ccw {
+    border-color: #B092C8;
+    background: #F7F2FA;
+    color: #684782;
+}
+
+#player1-rotate-ccw:hover,
+#player2-rotate-ccw:hover {
+    background: #EEE5F4;
+}
+
+/* تقارن */
+#player1-reflect,
+#player2-reflect {
+    border-color: #78B59A;
+    background: #F0F8F3;
+    color: #286247;
+}
+
+#player1-reflect:hover,
+#player2-reflect:hover {
+    background: #E2F1E8;
+}
+/* =========================================
+   رنگ‌بندی پنل بازیکنان
+   ========================================= */
+
+/* پنل بازیکن اول */
+
+#player1 .player-panel {
+    background:
+        linear-gradient(
+            145deg,
+            #F4F8FD,
+            #EDF4FB
+        );
+
+    border: 1px solid #C7D9EA;
+    border-top: 4px solid #7AA7D9;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 16px rgba(36, 82, 122, 0.10);
+
+    padding: 16px;
+
+    box-sizing: border-box;
+}
+
+
+/* عنوان بازیکن اول */
+
+#player1 > h2 {
+    color: #24527A;
+
+    font-family: Tahoma, sans-serif;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   پنل هوش مصنوعی
+   ========================================= */
+
+#player2 .player-panel {
+    background:
+        linear-gradient(
+            145deg,
+            #F7F3FA,
+            #F1EBF7
+        );
+
+    border: 1px solid #D8CBE4;
+    border-top: 4px solid #A58AC4;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 16px rgba(93, 63, 120, 0.10);
+
+    padding: 16px;
+
+    box-sizing: border-box;
+}
+
+
+/* عنوان هوش مصنوعی */
+
+#player2 > h2 {
+    color: #5D3F78;
+
+    font-family: Tahoma, sans-serif;
+
+    margin-bottom: 10px;
+}
+/* =========================================
+   کدهای ثبت‌شده — حالت فشرده
+   ========================================= */
+
+/* =========================================
+   کدهای ثبت‌شده
+   ========================================= */
+
+.player-code,
+.transformation-code {
+    min-height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: nowrap;
+    gap: 5px;
+
+    overflow-x: auto;
+
+    padding: 5px 6px;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    box-sizing: border-box;
+}
+
+
+/* کارت هر تبدیل */
+
+.transform-item {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    gap: 3px;
+
+    margin: 0;
+
+    padding: 4px 7px;
+
+    border-radius: 7px;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.08);
+
+    animation: transformItemIn 0.25s ease;
+}
+
+
+/* انیمیشن ورود کد */
+
+@keyframes transformItemIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* دکمه حذف */
+
+.delete-transform {
+    width: 15px;
+    height: 15px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    padding: 0;
+
+    background: transparent;
+
+    color: #C85C5C;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    line-height: 1;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.delete-transform:hover {
+    color: #A94444;
+
+    transform: scale(1.15);
+}
+/* =========================================
+   دکمه سؤال بعدی
+   ========================================= */
+
+#next-question {
+    display: block;
+
+    margin: 18px auto 12px;
+
+    padding: 10px 24px;
+
+    border: 1px solid #6B9BC3;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #EEF6FC,
+        #E3F0FA
+    );
+
+    color: #24527A;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 8px rgba(36, 82, 122, 0.12);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+#next-question:hover {
+    background: linear-gradient(
+        135deg,
+        #E3F0FA,
+        #D7EAF8
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 12px rgba(36, 82, 122, 0.18);
+}
+
+#next-question:active {
+    transform: scale(0.97);
+
+    box-shadow:
+        0 2px 4px rgba(36, 82, 122, 0.10);
+}
+/* =========================================
+   عنوان بازی
+   ========================================= */
+
+h1 {
+    margin: 8px 0 12px;
+
+    text-align: center;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 26px;
+    font-weight: 800;
+
+    color: #236B8E;
+
+    letter-spacing: -0.3px;
+
+    text-shadow:
+        0 1px 1px rgba(35, 107, 142, 0.12);
+}
+/* =========================================
+   دکمه ثبت پاسخ — رنگ تأیید نهایی
+   ========================================= */
+
+.submit-player {
+    display: block;
+
+    width: 85%;
+
+    margin: 14px auto 10px;
+
+    padding: 9px 18px;
+
+    border: 1px solid #C7A44A;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #FFF9E8,
+        #F8F0D2
+    );
+
+    color: #755D16;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 7px rgba(117, 93, 22, 0.12);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.submit-player:hover {
+    background: linear-gradient(
+        135deg,
+        #FFF4D1,
+        #F4E7BA
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 11px rgba(117, 93, 22, 0.17);
+}
+
+.submit-player:active {
+    transform: scale(0.97);
+
+    box-shadow:
+        0 2px 4px rgba(117, 93, 22, 0.10);
+}
+/* =========================================
+   پیام بازخورد پاسخ
+   ========================================= */
+
+.feedback {
+    min-height: 28px;
+    margin-top: 10px;
+    padding: 7px 10px;
+
+    box-sizing: border-box;
+
+    border-radius: 9px;
+
+    text-align: center;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* پاسخ صحیح */
+
+.feedback.correct {
+    color: #286247;
+
+    background: #F0F8F3;
+
+    border: 1px solid #9BC9AE;
+}
+
+
+/* پاسخ غلط */
+
+.feedback.wrong {
+    color: #A94444;
+
+    background: #FFF1F1;
+
+    border: 1px solid #E0A6A6;
+}
+
+
+/* انیمیشن */
+
+.feedback.show {
+    animation: feedbackIn 0.25s ease;
+}
+
+@keyframes feedbackIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   برد مقایسه عملکرد
+   ========================================= */
+
+#score-board {
+    border: 1px solid #CBD5E1;
+    border-top: 4px solid #6B9BC3;
+
+    border-radius: 14px;
+
+    padding: 10px 12px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.08);
+
+    box-sizing: border-box;
+}
+
+
+/* عنوان برد */
+
+.score-board-title {
+    color: #334155;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    margin-bottom: 9px;
+}
+
+
+/* دو کارت */
+
+.score-board-players {
+    gap: 10px;
+}
+
+
+/* کارت بازیکن */
+
+.score-player {
+    padding: 7px 9px;
+
+    border-radius: 10px;
+
+    background: #F4F8FD;
+
+    border: 1px solid #D5E2EF;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    box-sizing: border-box;
+}
+
+
+/* کارت AI */
+
+.score-player:nth-child(2) {
+    background: #F7F3FA;
+
+    border-color: #DDD2E8;
+}
+
+
+/* نام بازیکن */
+
+.score-player-name {
+    margin-bottom: 3px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   رنگ نشانه‌های عملکرد
+   ========================================= */
+
+/* ✓ */
+
+.score-player div:not(.score-player-name) {
+    color: #475569;
+}
+
+
+/* رنگ عدد درست */
+
+.score-player span[id*="correct"] {
+    color: #2E7D5A;
+
+    font-weight: bold;
+}
+
+
+/* رنگ عدد غلط */
+
+.score-player span[id*="wrong"] {
+    color: #B45353;
+
+    font-weight: bold;
+}
+
+
+/* رنگ زمان */
+
+.score-player span[id*="total-time"] {
+    color: #A47722;
+
+    font-weight: bold;
+
+    font-variant-numeric: tabular-nums;
+}
+
+/* =========================================
+   پنل چالش ویدیویی
+   ========================================= */
+
+#video-challenge {
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: 16px;
+    padding: 14px;
+
+    text-align: center;
+
+    background: #F4F8FC;
+
+    border: 1px solid #C9D9E8;
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 12px rgba(36, 82, 122, 0.08);
+}
+
+
+/* عنوان چالش */
+
+#video-challenge h3 {
+    margin: 0 0 12px;
+
+    color: #236B8E;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+/* قاب ویدیو */
+
+#video-challenge .video-box {
+    width: 65%;
+    max-width: 500px;
+
+    margin: 0 auto;
+
+    padding: 5px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #B9CAD9;
+    border-radius: 10px;
+
+    box-shadow:
+        0 3px 8px rgba(15, 23, 42, 0.10);
+
+    box-sizing: border-box;
+}
+
+
+/* خود ویدیو */
+
+#video-challenge video {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    border-radius: 7px;
+}
+
+
+/* دکمه شروع چالش */
+
+#start-video-challenge {
+    margin-top: 13px;
+
+    padding: 9px 20px;
+
+    border: 1px solid #6B9BC3;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #EEF6FC,
+        #E3F0FA
+    );
+
+    color: #24527A;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 7px rgba(36, 82, 122, 0.10);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+#start-video-challenge:hover {
+    background: #DCECF8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 11px rgba(36, 82, 122, 0.16);
+}
+
+#start-video-challenge:active {
+    transform: scale(0.97);
+}
+
+
+/* متن راهنما */
+
+#video-question {
+    margin: 10px 0 2px;
+
+    color: #64748B;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+/* بالا آوردن پنل ویدیو */
+
+/* =========================================
+   فشرده‌سازی پنل ویدیو
+   ========================================= */
+
+#video-challenge {
+    width: 100% !important;
+
+    margin-top: -8px !important;
+
+    padding: 0 10px 8px !important;
+
+    box-sizing: border-box;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+}
+
+
+/* قاب ویدیو */
+
+#video-challenge .video-box {
+    margin: 0 auto !important;
+
+    padding: 4px;
+
+    width: 65%;
+    max-width: 500px;
+
+    box-sizing: border-box;
+}
+
+
+/* متن راهنما */
+
+#video-challenge #video-question {
+    margin: 6px 0 4px;
+}
+
+
+/* دکمه شروع */
+
+#video-challenge #start-video-challenge {
+    margin-top: 7px;
+    margin-bottom: 4px;
+}
+/* =========================================
+   تنظیم نهایی پنل ویدیو
+   ========================================= */
+
+#video-challenge {
+    width: 100% !important;
+
+    margin-top: 4px !important;
+
+    padding: 10px 14px 14px !important;
+
+    min-height: 0 !important;
+
+    box-sizing: border-box;
+}
+
+
+/* فاصله قاب ویدیو */
+
+#video-challenge .video-box {
+    margin: 0 auto 10px !important;
+}
+
+
+/* دکمه شروع چالش */
+
+#video-challenge #start-video-challenge {
+    display: block;
+
+    margin: 10px auto 8px !important;
+}
+
+
+/* دکمه سؤال بعدی */
+
+#video-challenge #next-question {
+    display: block;
+
+    margin: 10px auto 4px !important;
+}
+
+/* =========================================
+   پنل چالش ویدیویی - چیدمان نهایی
+   ========================================= */
+
+#video-challenge {
+    width: 100% !important;
+
+    margin: 4px 0 0 !important;
+
+    padding: 12px 14px 14px !important;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background: #F4F8FC;
+
+    border: 1px solid #C9D9E8;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 4px 12px rgba(36, 82, 122, 0.08);
+
+    min-height: 0 !important;
+}
+
+
+/* =========================================
+   قاب ویدیو
+   ========================================= */
+
+#video-challenge .video-box {
+    width: 65%;
+    max-width: 620px;
+
+    margin: 0 auto;
+
+    padding: 5px;
+
+    box-sizing: border-box;
+
+    background: #FFFFFF;
+
+    border: 1px solid #B9CAD9;
+
+    border-radius: 11px;
+
+    box-shadow:
+        0 3px 8px rgba(15, 23, 42, 0.10);
+}
+
+
+#video-challenge video {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    border-radius: 7px;
+}
+
+
+/* =========================================
+   ردیف دکمه‌ها
+   ========================================= */
+
+#video-challenge .video-actions {
+    width: 65%;
+    max-width: 620px;
+
+    margin: 10px auto 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    direction: rtl;
+}
+
+
+/* هر دو دکمه */
+
+#video-challenge .video-actions button {
+    flex: 1;
+
+    min-height: 42px;
+
+    padding: 8px 16px;
+
+    border-radius: 10px;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+
+/* =========================================
+   شروع چالش
+   ========================================= */
+
+#video-challenge #start-video-challenge {
+    border: 1px solid #6B9BC3;
+
+    background: linear-gradient(
+        135deg,
+        #EEF6FC,
+        #E3F0FA
+    );
+
+    color: #24527A;
+
+    box-shadow:
+        0 3px 7px rgba(36, 82, 122, 0.10);
+}
+
+
+#video-challenge #start-video-challenge:hover {
+    background: #DCECF8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 11px rgba(36, 82, 122, 0.16);
+}
+
+
+/* =========================================
+   سؤال بعدی
+   ========================================= */
+
+#video-challenge #next-question {
+    border: 1px solid #C7A44A;
+
+    background: linear-gradient(
+        135deg,
+        #FFF9E8,
+        #F8F0D2
+    );
+
+    color: #755D16;
+
+    box-shadow:
+        0 3px 7px rgba(117, 93, 22, 0.10);
+}
+
+
+#video-challenge #next-question:hover {
+    background: #FFF2CC;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 11px rgba(117, 93, 22, 0.16);
+}
+
+
+/* فشار هنگام کلیک */
+
+#video-challenge .video-actions button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   متن راهنما
+   ========================================= */
+
+#video-challenge #video-question {
+    margin: 9px 0 0;
+
+    color: #64748B;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   نمایش بهتر در صفحه‌های باریک
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    #video-challenge .video-box,
+    #video-challenge .video-actions {
+        width: 90%;
+    }
+
+    #video-challenge .video-actions {
+        flex-direction: column;
+    }
+
+    #video-challenge .video-actions button {
+        width: 100%;
+    }
+}
+#next-question {
+    display: block;
+
+    width: 220px;
+
+    margin: 10px auto 15px;
+
+    padding: 9px 18px;
+
+    border: 1px solid #C7A44A;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #FFF9E8,
+        #F8F0D2
+    );
+
+    color: #755D16;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 7px rgba(117, 93, 22, 0.10);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+#next-question:hover {
+    background: #FFF2CC;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 11px rgba(117, 93, 22, 0.16);
+}
+
+#next-question:active {
+    transform: scale(0.97);
+}
+/* =========================================
+   دکمه‌های چالش ویدیویی
+   ========================================= */
+
+#video-challenge .video-actions {
+    width: 65%;
+    max-width: 620px;
+
+    margin: 10px auto 0;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    direction: rtl;
+}
+
+#video-challenge .video-actions button {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 42px;
+
+    padding: 8px 16px;
+
+    border-radius: 10px;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+/* شروع چالش */
+
+#video-challenge #start-video-challenge {
+    border: 1px solid #6B9BC3;
+
+    background: #EAF4FB;
+
+    color: #24527A;
+}
+
+
+/* سؤال بعدی */
+
+#video-challenge #next-question {
+    border: 1px solid #C7A44A;
+
+    background: #FFF7DF;
+
+    color: #755D16;
+}
+
+
+/* حرکت هنگام قرار گرفتن موس */
+
+#video-challenge .video-actions button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 10px rgba(15, 23, 42, 0.12);
+}
+
+
+/* کلیک */
+
+#video-challenge .video-actions button:active {
+    transform: scale(0.97);
+}
+
+#video-challenge .video-actions {
+    width: 65%;
+    max-width: 620px;
+
+    margin: 10px auto 0;
+
+    display: flex !important;
+    flex-direction: row !important;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    direction: rtl;
+}
+
+#video-challenge .video-actions button {
+    flex: 1 1 0;
+
+    width: 50%;
+
+    min-height: 42px;
+
+    margin: 0 !important;
+    padding: 8px 12px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#video-challenge #start-video-challenge {
+    background: #EAF4FB;
+    color: #24527A;
+    border: 1px solid #6B9BC3;
+}
+
+#video-challenge #next-question {
+    background: #FFF7DF;
+    color: #755D16;
+    border: 1px solid #C7A44A;
+}
+
+/* =========================================
+   دکمه سؤال بعدی
+   ========================================= */
+
+#next-question-container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+
+    width: 100%;
+}
+
+
+/* حالت ویدیویی */
+
+#video-challenge + #next-question-container {
+    gap: 12px;
+}
+
+
+/* خود دکمه */
+
+#next-question {
+    min-width: 180px;
+
+    min-height: 42px;
+
+    padding: 8px 18px;
+
+    border: 1px solid #C7A44A;
+
+    border-radius: 10px;
+
+    background: #FFF7DF;
+
+    color: #755D16;
+
+    font-family: Tahoma, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+#next-question:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 10px rgba(117, 93, 22, 0.15);
+}
+
+/* دکمه‌های چالش ویدیویی */
+
+#video-challenge .video-actions {
+    width: 65%;
+    max-width: 620px;
+
+    margin: 10px auto 0;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+}
+
+#video-challenge .video-actions button {
+    flex: 1;
+
+    min-height: 42px;
+
+    margin: 0 !important;
+    padding: 8px 14px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+/* شروع چالش */
+
+#video-challenge #start-video-challenge {
+    background: #EAF4FB;
+    color: #24527A;
+    border: 1px solid #6B9BC3;
+}
+
+
+/* سؤال بعدی */
+
+#video-challenge #next-video-question {
+    background: #FFF7DF;
+    color: #755D16;
+    border: 1px solid #C7A44A;
+}
+
+
+/* حالت قرار گرفتن موس */
+
+#video-challenge .video-actions button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 10px rgba(15, 23, 42, 0.12);
+}
+
+
+/* هنگام کلیک */
+
+#video-challenge .video-actions button:active {
+    transform: scale(0.97);
+}
