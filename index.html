@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بازی تبدیلات هندسی</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header id="header">
+    <h1>بازی تبدیلات هندسی</h1>
+</header>
+
+
+<main id="game">
+
+    <!-- ================================= -->
+    <!-- ستون بازیکن اول -->
+    <!-- ================================= -->
+
+    <aside id="player1" class="player-column">
+
+        <h2>بازیکن اول</h2>
+
+        <div class="player-panel">
+
+            
+
+
+            <div class="code-title">
+                کد تبدیل
+            </div>
+
+            <div id="player1-code" class="player-code">
+            </div>
+
+
+            <div class="player-tools">
+
+                <button id="player1-translate" type="button">
+                    انتقال
+                </button>
+
+                <button id="player1-rotate-cw" type="button">
+                    دوران ↻
+                </button>
+
+                <button id="player1-rotate-ccw" type="button">
+                    دوران ↺
+                </button>
+
+                <button id="player1-reflect" type="button">
+                    تقارن
+                </button>
+
+            </div>
+
+
+            <button
+                id="submit-player1"
+                class="submit-player"
+                type="button">
+                ثبت پاسخ
+            </button>
+
+
+            <div
+                id="player1-feedback"
+                class="feedback">
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================================= -->
+    <!-- ستون وسط: صفحه بازی -->
+    <!-- ================================= -->
+
+    <section id="board">
+     
+
+    <!-- ================================= -->
+    <!-- برد مقایسه عملکرد -->
+    <!-- ================================= -->
+
+    <div id="score-board">
+
+        <div class="score-board-title">
+            مقایسه عملکرد
+        </div>
+
+        <div class="score-board-players">
+
+            <div class="score-player">
+
+                <div class="score-player-name">
+                    بازیکن اول
+                </div>
+
+                <div>
+                    ✓
+                    <span id="player1-correct-count">0</span>
+
+                </div>
+             
+
+                <div>
+                    ✗
+                    <span id="player1-wrong-count">0</span>
+                </div>
+
+                <div>
+                    ⏱
+                    <span id="player1-total-time">
+                        00:00.0
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="score-player">
+
+                <div class="score-player-name">
+                    هوش مصنوعی
+                </div>
+
+                <div>
+                    ✓
+                    <span id="player2-correct-count">0</span>
+                </div>
+
+                <div>
+                    ✗
+                    <span id="player2-wrong-count">0</span>
+                </div>
+
+                <div>
+                    ⏱
+                    <span id="player2-total-time">
+                        00:00.0
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div id="challenge-area"></div>
+
+         <div class="shapes-row">
+
+            <!-- شکل اصلی -->
+
+            <div id="original-area" class="panel">
+
+                <h3>شکل اصلی</h3>
+
+                <svg
+                    id="original-shape"
+                    width="300"
+                    height="250"
+                    viewBox="-150 -125 300 250">
+                </svg>
+
+            </div>
+
+
+            <!-- شکل تبدیل‌یافته -->
+
+            <div id="target-area" class="panel">
+
+                <h3>شکل تبدیل‌یافته</h3>
+
+                <svg
+                    id="target-shape"
+                    width="300"
+                    height="250"
+                    viewBox="-150 -125 300 250">
+                </svg>
+
+            </div>
+
+        </div>
+        <button
+    id="next-question"
+    type="button">
+    سؤال بعدی ←
+</button>
+        <!-- ================================ -->
+<!-- حالت چالش ویدیویی -->
+<!-- ================================ -->
+
+<div id="video-challenge" class="video-challenge" style="display: block;">
+
+    <div class="video-box">
+
+        <video
+            id="challenge-video"
+            controls
+            preload="metadata">
+        </video>
+
+    </div>
+
+    <div class="video-actions">
+
+        <button
+            id="start-video-challenge"
+            type="button">
+            ▶ شروع چالش
+        </button>
+      
+        
+
+    </div>
+    
+
+    <p id="video-question">
+        تبدیلاتی را که دیدی، به ترتیب کد بزن. 📝
+    </p>
+
+</div>
+
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- ستون بازیکن دوم -->
+    <!-- ================================= -->
+
+    <aside id="player2" class="player-column">
+
+        <h2>بازیکن دوم</h2>
+
+        <div class="player-panel">
+
+            
+
+
+            <div class="code-title">
+                کد تبدیل
+            </div>
+
+            <div id="player2-code" class="player-code">
+            </div>
+
+
+            <div class="player-tools">
+
+                <button id="player2-translate" type="button">
+                    انتقال
+                </button>
+
+                <button id="player2-rotate-cw" type="button">
+                    دوران ↻
+                </button>
+
+                <button id="player2-rotate-ccw" type="button">
+                    دوران ↺
+                </button>
+
+                <button id="player2-reflect" type="button">
+                    تقارن
+                </button>
+
+            </div>
+
+
+            <button
+                id="submit-player2"
+                class="submit-player"
+                type="button">
+                ثبت پاسخ
+            </button>
+
+
+            <div
+                id="player2-feedback"
+                class="feedback">
+            </div>
+
+        </div>
+
+    </aside>
+
+</main>
+
+
+<div id="game-over-modal" class="game-over-modal" style="display: none;">
+
+    <div class="game-over-box">
+
+        <div class="game-over-title">
+            🎉 بازی به پایان رسید!
+        </div>
+
+        <div id="game-over-message" class="game-over-message">
+            همه‌ی چالش‌ها را پشت سر گذاشتی!
+        </div>
+
+        <div class="game-over-result">
+
+            <div class="final-player">
+
+                <h3>👤 بازیکن اول</h3>
+
+                <div>
+                    ✓ پاسخ صحیح:
+                    <span id="final-player1-correct">0</span>
+                </div>
+
+                <div>
+                    ✗ پاسخ غلط:
+                    <span id="final-player1-wrong">0</span>
+                </div>
+
+                <div>
+                    ⏱ زمان کل:
+                    <span id="final-player1-time">00:00.0</span>
+                </div>
+                <div>
+    ⭐ امتیاز نهایی:
+    <span id="final-player1-score">0</span>
+</div>
+            </div>
+
+
+            <div class="final-player">
+
+                <h3>🤖 هوش مصنوعی</h3>
+
+                <div>
+                    ✓ پاسخ صحیح:
+                    <span id="final-player2-correct">0</span>
+                </div>
+
+                <div>
+                    ✗ پاسخ غلط:
+                    <span id="final-player2-wrong">0</span>
+                </div>
+
+                <div>
+                    ⏱ زمان کل:
+                    <span id="final-player2-time">00:00.0</span>
+                </div>
+                <div>
+    ⭐ امتیاز نهایی:
+    <span id="final-player2-score">0</span>
+</div>
+            </div>
+
+        </div>
+
+
+        <button
+            id="restart-game"
+            type="button">
+            🔄 شروع دوباره بازی
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<footer id="footer">
+    
+</footer>
+
+
+
+<!-- ================================= -->
+<!-- فایل‌های جاوااسکریپت -->
+<!-- ================================= -->
+
+<script src="js/engine.js"></script>
+<script src="js/generator.js"></script>
+<script src="js/judge.js"></script>
+<script src="js/player.js"></script>
+<script src="js/ui.js"></script>
+
+<script src="main.js"></script>
+
+</a>>
+</body>
+
+</html>
